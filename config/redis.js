@@ -5,7 +5,9 @@ if (process.env.NODE_ENV === "production") {
     // We are in prod
     const rtgConfig = new URL(process.env.REDISTOGO_URL);
     module.exports = {
-      ...rtgConfig
+      port: rtgConfig.port,
+      hostname: rtgConfig.hostname,
+      password: rtgConfig.password
     };
 } else {
   // We are in dev
