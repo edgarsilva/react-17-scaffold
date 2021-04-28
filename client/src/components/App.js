@@ -24,7 +24,21 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Landing = () => <h2>Landing</h2>;
+const Landing = () => {
+  const user = useSelector(state => {
+    return state.user;
+  });
+
+  if (!user) {
+    return <Redirect to="/sign-in" />;
+  }
+
+  return (
+    <>
+      <div>Landing</div>
+    </>
+  )
+};
 
 export default function App() {
   const user = useSelector(state => {
@@ -38,10 +52,6 @@ export default function App() {
   }, [dispatch, user]);
 
   const classes = useStyles();
-
-  if (!user) {
-    return <Redirect to="/sign-in" />;
-  }
 
   return (
     <div className={classes.app}>

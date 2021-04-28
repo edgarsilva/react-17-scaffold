@@ -29,20 +29,23 @@ const keys = require("./config/keys");
 const app = express();
 
 // SETTING-UP MIDDLEWARES
-
 // SETTING UP SESSION WITH EXPRESS-SESSION AND REDIS-CONNECT
-const redisConfig = require("./config/redis");
-if (process.env.REDISTOGO_URL) {
-  console.log("REDIS CONFIG ====>", redisConfig);
-  var redis = require("redis").createClient(redisConfig.port, rtg.hostname);
+function redisClient() {
+  const redisConfig = require("./config/redis");
+  // console.log("REDIS CONFIG ====>", redisConfig);
 
-  redis.auth(rtg.auth.split(":")[1]);
-} else {
-    const redisClient = redis.createClient(redisConfig);
+  if (!process.env.REDISTOGO_URL) {
+    return redis.createClient(redisConfig);
+  }
+
+  const client = redis.createClient(redisConfig.port, redisConfig.hostname);
+  client.auth(redisConfig.password);
+
+  return client;
 }
 
 const sessionConfigObj = {
-  store: new RedisStore({ client: redisClient }),
+  store: new RedisStore({ client: redisClient() }),
   secret: keys.cookieKey,
   saveUninitialized: false,
   resave: false,
