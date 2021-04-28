@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 
 // MAterial-UI and Local componenets
 // import logo from '../images/logo.svg';
@@ -38,6 +38,11 @@ export default function App() {
   }, [dispatch, user]);
 
   const classes = useStyles();
+
+  if (!user) {
+    return <Redirect to="/sign-in" />;
+  }
+
   return (
     <div className={classes.app}>
       <BrowserRouter>

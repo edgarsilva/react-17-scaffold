@@ -32,7 +32,15 @@ const app = express();
 
 // SETTING UP SESSION WITH EXPRESS-SESSION AND REDIS-CONNECT
 const redisConfig = require("./config/redis");
-const redisClient = redis.createClient(redisConfig);
+if (process.env.REDISTOGO_URL) {
+  console.log("REDIS CONFIG ====>", redisConfig);
+  var redis = require("redis").createClient(redisConfig.port, rtg.hostname);
+
+  redis.auth(rtg.auth.split(":")[1]);
+} else {
+    const redisClient = redis.createClient(redisConfig);
+}
+
 const sessionConfigObj = {
   store: new RedisStore({ client: redisClient }),
   secret: keys.cookieKey,
