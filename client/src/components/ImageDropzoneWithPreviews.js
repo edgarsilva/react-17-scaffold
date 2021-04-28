@@ -20,7 +20,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 25px;
   border-width: 2px;
   border-radius: 2px;
   border-color: ${props => getColor(props)};
@@ -29,6 +29,19 @@ const Container = styled.div`
   color: #bdbdbd;
   outline: none;
   transition: border .24s ease-in-out;
+  margin: 0.75em auto 2em;
+
+  .title {
+    color: #4a4a4a;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .sub {
+    font-size: 14px;
+    line-height: 1.29;
+    color: #b2b2b2;
+  }
 `;
 
 export default function ImageDropzoneWithPreviews(props) {
@@ -44,7 +57,8 @@ export default function ImageDropzoneWithPreviews(props) {
     <div className="container">
       <Container {...getRootProps({isDragActive, isDragAccept, isDragReject})}>
         <input {...getInputProps()} />
-        <p>Drag 'n' drop some files here, or click to select files</p>
+        <div className="title">+ Choose an image…</div>
+        <div className="sub" >.JPG, .GIF or .PNG max. 5mb</div>
       </Container>
     </div>
   );
