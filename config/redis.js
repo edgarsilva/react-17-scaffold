@@ -1,13 +1,13 @@
-const url = require("url");
+const URL = require("url").URL;
 
 // keys.js figures out what set of keys to use
 if (process.env.NODE_ENV === "production") {
     // We are in prod
-    const rtgConfig = url(process.env.REDISTOGO_URL);
+    const rtgConfig = new URL(process.env.REDISTOGO_URL);
     module.exports = {
       url: rtgConfig.href,
-      user: rtgConfig.auth.split(":")[0],
-      password: rtgConfig.auth.split(":")[1]
+      user: rtgConfig.username,
+      password: rtgConfig.password,
     };
 } else {
   // We are in dev
