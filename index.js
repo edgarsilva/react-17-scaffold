@@ -1,7 +1,7 @@
 // App Modules
 const express = require('express');
 const bodyParser = require("body-parser");
-const requireLogin = require("./middlewares/requireLogin");
+// const requireLogin = require("./middlewares/requireLogin");
 
 // Utilities
 // require("dotenv").config();
