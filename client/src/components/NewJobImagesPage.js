@@ -1,5 +1,6 @@
 // React, Redux and React Router imports
 // import { useSelector, useDispatch } from 'react-redux'
+import { Link as RouterLink } from 'react-router-dom';
 
 // Material-UI and Vendor components
 // import Box from '@material-ui/core/Box';
@@ -46,8 +47,10 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center"
   },
   title: {
+    width: "100%",
     textAlign: "left",
-    margin: "0 0 1em 0"
+    margin: "0 0 1em 0",
+    fontWeight: "bold"
   }
 }));
 
@@ -95,6 +98,8 @@ export default function SignInSide() {
               size="large"
               color="primary"
               className={classes.submit}
+              to="artwork"
+              component={RouterLink}
             >
               Next: Artwork
             </Button>

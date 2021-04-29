@@ -11,7 +11,33 @@ const theme = createMuiTheme({
     secondary: {
       main: "#ffaa00"
     }
+  },
+  overrides: {
+    MuiTextField: {
+      root: {
+        // borderColor: "green"
+      },
+      palette: {
+        primary: {
+          main: "#ffaa00"
+        }
+      }
+    },
+    MuiInput: {
+      underline: {
+        "&::after": {
+          borderBottom: "2px solid #ffaa00"
+        }
+      },
+      root: {
+        '&$focused': {
+          // borderBottom: "2px solid #ffaa00"
+          // outline: `1px solid green`
+        },
+      }
+    }
   }
+
 });
 
 export default theme;

@@ -10,6 +10,7 @@ import Header from './Header';
 import SignInPage from './SignInPage';
 import NewJobPage from './NewJobPage';
 import NewJobImagesPage from './NewJobImagesPage';
+import NewJobArtworkPage from './NewJobArtworkPage';
 import { ThemeProvider } from '@material-ui/styles';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -63,6 +64,7 @@ export default function App() {
           <Route exact path="/sign-out" component={SignInPage} />
           <Route exact path="/new-job" component={NewJobPage} />
           <Route exact path="/new-job/upload" component={NewJobImagesPage} />
+          <Route exact path="/new-job/artwork" component={NewJobArtworkPage} />
         </ThemeProvider>
       </BrowserRouter>
     </div>
