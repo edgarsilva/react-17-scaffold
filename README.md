@@ -1,12 +1,12 @@
-# Restoration MD - Online Ordering Webapp
+# MY_WEBAPP - Online Ordering Webapp
 
 ## Tech Stack
 
-Restoration MD Webapp Client - Webapp is set up to consume the restoration-md API, the tech stack consists of the following:
+MY_WEBAPP Webapp Client - Webapp is set up to consume the MY_WEBAPP API, the tech stack consists of the following:
 
 #### Server Side
 
-Serving the Webapp Client sstatic assets (html, js, css, etc) is a Lite Express.js Server, this is also used for light session management, keys, Vendor APIs interactions that need to happen on server and are not relevant to the Restoration MD API (like oAuth flows), also this should let us du SSR (Server Side Rendering) and SEO (Search Engine Optimizations) if we need to.
+Serving the Webapp Client sstatic assets (html, js, css, etc) is a Lite Express.js Server, this is also used for light session management, keys, Vendor APIs interactions that need to happen on server and are not relevant to the MY_WEBAPP API (like oAuth flows), also this should let us du SSR (Server Side Rendering) and SEO (Search Engine Optimizations) if we need to.
 
 Located at the root of our app, point of entry `index.js` as usual, dependencies can be checked in the `package.json`
 
@@ -82,7 +82,7 @@ and is configured with hot-reloading, that means it automatically tracks changes
 The app is setup to deploy to production servers when there's a merge to the main
 branch. The branch is protected and only approved and commits that have passes all CI
 checks would be merged in, you can check the status of the checks here ->
-[Github Restoration MD Webapp](https://github.com/RestorationMD/webapp) just go to the
+[Github MY_WEBAPP Webapp](https://github.com/MY_WEBAPP/webapp) just go to the
 to the pull request you are waiting on and click it to see the pending checks.
 
 The app is being deployed to heroku on `main` branch merges but can also be manually pushed from `heroku cli`
