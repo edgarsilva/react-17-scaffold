@@ -5,6 +5,7 @@ import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 // MAterial-UI and Local componenets
 // import logo from '../images/logo.svg';
 import '../styles/App.css';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import theme from '../styles/material-ui-theme';
 import Header from './Header';
 import SignInPage from './SignInPage';
@@ -15,7 +16,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import { makeStyles } from '@material-ui/core/styles';
 
 // Actions
-import { fetchUser } from "../actions";
+import { authActions } from "../store/auth-slice";
 
 const useStyles = makeStyles((theme) => ({
   app: {
@@ -27,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Landing = () => {
   const user = useSelector(state => {
+    console.log("Initial State:", state);
     return state.user;
   });
 
@@ -35,27 +37,27 @@ const Landing = () => {
   }
 
   return (
-    <>
-      <div>Landing</div>
-    </>
+    <div>Landing</div>
   )
 };
 
 export default function App() {
-  const user = useSelector(state => {
-    return state.user;
-  });
   const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
+  const printState = useSelector(state => {
+    console.log("PrintState:", state);
+  });
 
   useEffect(() => {
     console.log("Use Effect has run!");
-    dispatch(fetchUser("Test passing arguments."));
+    dispatch(authActions.fetchUser("Test passing arguments."));
   }, [dispatch, user]);
 
   const classes = useStyles();
 
   return (
     <div className={classes.app}>
+      <CssBaseline />
       <BrowserRouter>
         <ThemeProvider theme={theme}>
           <Route path="/" component={Header} />

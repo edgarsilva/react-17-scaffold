@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import reduxThunk from 'redux-thunk';
 
 // Monitor and data mine app vitals
 import reportWebVitals from './reportWebVitals';
@@ -13,9 +11,7 @@ import './styles/index.css';
 
 // App and Local Components
 import App from './components/App';
-import reducers from './reducers';
-
-const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+import store from './store/index';
 
 ReactDOM.render(
   <React.StrictMode>

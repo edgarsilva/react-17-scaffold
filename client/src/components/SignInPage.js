@@ -17,8 +17,8 @@ import WhatshotIcon from "@material-ui/icons/Whatshot";
 import { Redirect } from "react-router";
 
 // Actions
-import { UPDATE_AUTH } from '../constants/types';
-import { signIn } from "../actions";
+import { authActions } from "../store/auth-slice";
+import { signIn } from "../store/auth-slice";
 
 function Copyright() {
   return (
@@ -56,13 +56,11 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInPage() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { user, creds } = useSelector(state => {
-    return {
-      user: state.auth.user,
-      creds: state.auth.creds || {}
-    }
-  });
 
+  const { user, creds = {} } = useSelector(state => state.auth);
+
+  console.log("User in SignIn Page:", user)
+  console.log("Creds in SignIn Page:", creds)
   if (user) {
     return <Redirect to="/new-job" />;
   }
@@ -93,7 +91,7 @@ export default function SignInPage() {
             autoFocus
             value={creds.email || ""}
             onChange={(ev, data) => {
-              dispatch({ type: UPDATE_AUTH, payload: { creds: { ...creds, email: ev.target.value } } });
+              dispatch(authActions.updateCreds({ email: ev.target.value }));
             }}
           />
           <TextField
@@ -105,6 +103,10 @@ export default function SignInPage() {
             type="password"
             id="password"
             autoComplete="current-password"
+            value={creds.password || ""}
+            onChange={(ev, data) => {
+              dispatch(authActions.updateCreds({ password: ev.target.value }));
+            }}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

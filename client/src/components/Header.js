@@ -14,7 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 // Actions
-import { signOut } from "../actions";
+import { signOut } from "../store/auth-slice";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,12 +41,9 @@ const useStyles = makeStyles((theme) => ({
 export default function ButtonAppBar() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { user } = useSelector(state => {
-    return {
-      user: state.auth.user
-    }
-  });
+  const user = useSelector(state => state.auth.user);
 
+  console.log("User:", user);
   function signOutUser(email, pwd) {
     dispatch(signOut());
   }
@@ -64,8 +61,7 @@ export default function ButtonAppBar() {
             </Avatar>
             Restoration MD
           </Typography>
-          { (user)
-            ? (
+          { user && (
               <Button
                 type="button"
                 color="inherit"
@@ -76,8 +72,8 @@ export default function ButtonAppBar() {
               >
                 Sign Out
               </Button>
-            )
-            : (
+          )}
+          { !user && (
               <>
                 <Link
                   to="/sign-in"
@@ -92,8 +88,7 @@ export default function ButtonAppBar() {
                 </Link>
                 <Button color="inherit">Sign Up</Button>
               </>
-            )
-          }
+          )}
         </Toolbar>
       </AppBar>
     </div>

@@ -5,7 +5,6 @@ import { Link as RouterLink } from 'react-router-dom';
 // Material-UI components
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
